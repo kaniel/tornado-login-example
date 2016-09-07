@@ -21,7 +21,7 @@ define("unix_socket", default='',
 define("xheaders", default=False,
 		help="enable support for the 'X-Real-Ip' and 'X-Scheme' headers." ,type=bool)
 
-define("debug", default=False,
+define("debug", default=True,
 		help="run in debug mode" ,type=bool)
 
 define("ca_certs", default=None,

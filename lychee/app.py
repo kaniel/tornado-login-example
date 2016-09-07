@@ -10,7 +10,7 @@ from tornado.httpserver import HTTPServer
 
 
 from api import control
-from urls import handlers
+from urls import handlers ,settings
 from options import default_options
 
 logger = logging.getLogger(__name__)
@@ -62,5 +62,5 @@ class Lychee(tornado.web.Application):
 
 
 if __name__ == '__main__':
-	app = Lychee()
+	app = Lychee(**settings)
 	app.start()

@@ -2,9 +2,11 @@ from __future__ import absolute_import
 
 
 from views import BaseHandler
-
+from tornado import web
 
 class IndexHandler(BaseHandler):
+	
+	@web.authenticated
 	def get(self):
-		self.write('<h1>Hello Tornado</h1>')
+		self.render("index.html")
 
