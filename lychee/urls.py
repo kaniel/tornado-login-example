@@ -1,0 +1,40 @@
+from __future__ import absolute_import
+
+import os
+
+from tornado.web import StaticFileHandler, url
+
+
+#from api import post_order
+#from api import get_order
+
+from views import auth
+from views import main
+from views.error import NotFoundErrorHandler
+from utils import gen_cookie_secret
+
+
+settings = dict(
+		template_path = os.path.join(os.path.dirname(__file__), "templates"),
+		static_path = os.path.join(os.path.dirname(__file__), "static"),
+		cookie_secret=gen_cookie_secret(),
+		static_url_prefix='/static/',
+		login_url='/login',
+)
+
+handlers = [
+
+	# Main
+	url(r"/",main.IndexHandler),
+	
+	# Auth
+	(r"/login", auth.LoginHandler),
+	url(r"/logout",auth.LogoutHandler, name='logout'),
+
+	# Static
+	(r"/static/(.*)", StaticFileHandler,
+	 {"path":settings['static_path']}),
+
+	# Error
+	(r".*", NotFoundErrorHandler),
+]
