@@ -12,11 +12,36 @@ from tornado.httpserver import HTTPServer
 from api import control
 from urls import handlers ,settings
 from options import default_options
+from jinja2 import Environment, FileSystemLoader
+
 
 logger = logging.getLogger(__name__)
 
 
-class Lychee(tornado.web.Application):
+class JinjaApplicationMixin(object):
+	def __init__(self, *args, **settings):
+		super(JinjaApplicationMixin, self).__init__(*args, **settings)
+		if "template_path" not in settings:
+			return 
+
+		if "template_loader" in settings:
+			loader = settings['template_loader']
+		else:
+			loader = FileSystemLoader(settings['template_path'])
+
+		if 'debug' in settings:
+			auto_reload = settings['debug']
+		else:
+			auto_reload = False
+
+		autoescape = bool(settings.get('autoescape', False))
+		self.jinja_env = Environment(
+				loader = loader,
+				auto_reload = auto_reload,
+				autoescape = autoescape,)
+
+
+class Lychee(JinjaApplicationMixin ,tornado.web.Application):
 	#pool_executor_cls = ThreadPoolExecutor
 	max_workers = 4
 
