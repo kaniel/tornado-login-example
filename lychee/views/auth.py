@@ -23,6 +23,7 @@ class LoginHandler(BaseHandler):
 		
 		if username == sample_user and password == sample_password:
 			self.set_secure_cookie("user", str(username), expires_days=7)
+			self.flash("You have login now~~")
 			self.redirect('/')
 
 		else:

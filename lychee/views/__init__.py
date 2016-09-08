@@ -19,6 +19,7 @@ class JinjaHandlerMixin(object):
 			'static_url':self.static_url,
 			'xsrf_form_html':self.xsrf_form_html,
 			'reverse_url':self.reverse_url,
+			'flash_message':self.flash_message(),
 		}
 
 		escape_context = {
@@ -41,3 +42,14 @@ class BaseHandler(JinjaHandlerMixin, tornado.web.RequestHandler):
 	
 	def get_current_user(self):
 		return self.get_secure_cookie("user")
+
+	def flash_message(self):
+		message =  self.get_secure_cookie("flash")
+		if isinstance(message,str):
+			self.clear_cookie("flash")
+			return message
+		else:
+			return None
+
+	def flash(self, message):
+		self.set_secure_cookie("flash",message)

@@ -10,6 +10,7 @@ from tornado.web import StaticFileHandler, url
 
 from views import auth
 from views import main
+from views import dashboard
 from views.error import NotFoundErrorHandler
 from utils import gen_cookie_secret
 
@@ -26,6 +27,10 @@ handlers = [
 
 	# Main
 	url(r"/",main.IndexHandler),
+	
+	# Dash
+	url(r"/dashboard", dashboard.DashIndexHandler),
+	url(r"/dashboard/addstudent", dashboard.DashAddStudentHandler),
 	
 	# Auth
 	(r"/login", auth.LoginHandler),
