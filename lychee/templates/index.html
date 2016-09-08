@@ -1,11 +1,101 @@
 {% extends "base.html" %}
+{% block head %}
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-{% block content %}
-
-
-<p>{{ current_user | default('No name', true) }}</p>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 {% endblock %}
 
+
+{% block content %}
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</button>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>.active</code>
+          </td>
+          <td>鼠标悬停在行或单元格上时所设置的颜色</td>
+        </tr>
+        <tr>
+          <td>
+            <code>.success</code>
+          </td>
+          <td>标识成功或积极的动作</td>
+        </tr>
+        <tr>
+          <td>
+            <code>.info</code>
+          </td>
+          <td>标识普通的提示信息或动作</td>
+        </tr>
+        <tr>
+          <td>
+            <code>.warning</code>
+          </td>
+          <td>标识警告或需要用户注意</td>
+        </tr>
+        <tr>
+          <td>
+            <code>.danger</code>
+          </td>
+          <td>标识危险或潜在的带来负面影响的动作</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bs-example">
+    <table class="table">
+      <thead>
+        <tr class="info">
+          <th>#</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+
+		{% for i in range(10) %} 
+			{% if i % 2 == 0 %}
+		        <tr class="success">
+			{% elif i % 3 == 0  %}
+		        <tr class="warning">
+			{% else %}
+		        <tr class="info">
+			{% endif %}
+
+		          <td>{{ i }}</td>
+		          <td>100{{i}}</td>
+		          <td>Frank AK</td>
+		          <td>{{ i+18 }}</td>
+				  <td><a href="/studentinfo"><span class="glyphicon glyphicon-pencil"></span>..</a></td>
+				  <td><span class="glyphicon glyphicon-pencil"></span></td>
+			</tr>
+		{% endfor %} 
+      </tbody>
+    </table>
+		<span class="glyphicon glyphicon-pencil"></span>
+  </div><!-- /example -->
+
+{% endblock %}

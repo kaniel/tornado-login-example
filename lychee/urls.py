@@ -21,6 +21,7 @@ settings = dict(
 		cookie_secret=gen_cookie_secret(),
 		static_url_prefix='/static/',
 		login_url='/login',
+		debug=True,
 )
 
 handlers = [
@@ -31,6 +32,7 @@ handlers = [
 	# Dash
 	url(r"/dashboard", dashboard.DashIndexHandler),
 	url(r"/dashboard/addstudent", dashboard.DashAddStudentHandler),
+	url(r"/dashboard/studentinfo", dashboard.StudentInfoHandler),
 	
 	# Auth
 	(r"/login", auth.LoginHandler),

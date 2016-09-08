@@ -17,3 +17,8 @@ class DashAddStudentHandler(BaseHandler):
 	@web.authenticated
 	def post(self):
 		self.render("dashboard/add_student.html")
+
+class StudentInfoHandler(BaseHandler):
+	@web.authenticated
+	def get(self):
+		self.render("dashboard/student_info.html")
