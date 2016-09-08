@@ -10,7 +10,7 @@ sample_password = 'admin'
 
 
 from views import BaseHandler
-
+from tornado import web
 
 class LoginHandler(BaseHandler):
 	def get(self):
@@ -33,4 +33,8 @@ class LoginHandler(BaseHandler):
 class LogoutHandler(BaseHandler):
 	def get(self):
 		self.clear_cookie('user')
-		self.render('404.html', message='Successfulyy logged out!')
+		self.redirect('/')
+	
+	def post(self):
+		self.clear_cookie('user')
+		self.redirect('/')

@@ -4,7 +4,8 @@
 
 {% block content %}
 
-<p>{{ name | default('No name', true) }}</p>
+
+<p>{{ current_user | default('No name', true) }}</p>
 
 {% endblock %}
 

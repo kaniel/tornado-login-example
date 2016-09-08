@@ -6,7 +6,8 @@ from views import BaseHandler
 
 class NotFoundErrorHandler(BaseHandler):
 	def get(self):
-		raise tornado.web.HTTPError(404)
+#raise tornado.web.HTTPError(404)
+		self.render("error/404.html")
 
 	def post(self):
 		raise tornado.web.HTTPError(404)
