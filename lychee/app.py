@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import logging
 
 from functools import partial
-#from concurrent.futures import ThreadPoolExecutor 
+from concurrent.futures import ThreadPoolExecutor 
 import tornado.web
 from tornado import ioloop
 from tornado.httpserver import HTTPServer
@@ -42,7 +42,7 @@ class JinjaApplicationMixin(object):
 
 
 class Lychee(JinjaApplicationMixin ,tornado.web.Application):
-	#pool_executor_cls = ThreadPoolExecutor
+	pool_executor_cls = ThreadPoolExecutor
 	max_workers = 4
 
 	def __init__(self, options=None, io_loop=None, **kwargs):
@@ -55,7 +55,7 @@ class Lychee(JinjaApplicationMixin ,tornado.web.Application):
 		self.started = False
 
 	def start(self):
-		#self.pool = self.pool_executor_cls(max_workers=self.max_workers)
+		self.pool = self.pool_executor_cls(max_workers=self.max_workers)
 		if not self.options.unix_socket:
 			self.listen(self.options.port, address=self.options.address,
 						ssl_options=self.ssl_options,xheaders=self.options.xheaders)
@@ -66,9 +66,10 @@ class Lychee(JinjaApplicationMixin ,tornado.web.Application):
 			socket = bind_unix_socket(self.options.unix_socket)
 			server.add_socket(socket)
 
-#self.io_loop.add_future(
-			# TODO ...
-#				)
+		self.io_loop.add_future(
+				control.ControlHandler.update_workers(app=self),
+				callback=lambda x : logger.debug(
+					"Successfully updated worker cache"))
 
 		self.started = True
 		self.io_loop.start()
@@ -76,11 +77,11 @@ class Lychee(JinjaApplicationMixin ,tornado.web.Application):
 
 	def stop(self):
 		if self.started:
-			#self.pool.stutdown(wait=False)
+			self.pool.stutdown(wait=False)
 			self.started = False
 
-	#def delay(self, method, *args, **kwargs):
-	#	return self.pool.submit(partial(method, *args, **kwargs))
+	def delay(self, method, *args, **kwargs):
+		return self.pool.submit(partial(method, *args, **kwargs))
 
 
 			

@@ -3,7 +3,7 @@
   <head>
 {% block head %}
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Welcome | Lychee</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -52,6 +52,9 @@
 			<li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
 			<li><a href="/about"><span class="glyphicon glyphicon-heart"></span></a></li>
 			<li><a href="/contact"><span class="glyphicon glyphicon-phone-alt"></span></a></li>
+			{% if current_user %}
+			<li><a href="/dashboard"><span class="glyphicon glyphicon-th-large"></span></a></li>
+			<li><a href="/dashboard/addstudent"><span class="glyphicon glyphicon-plus"></span></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-list"></span><span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -64,6 +67,7 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+			{% endif %}
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
