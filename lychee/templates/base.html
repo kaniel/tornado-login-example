@@ -49,11 +49,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+			<li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+			<li><a href="/about"><span class="glyphicon glyphicon-heart"></span></a></li>
+			<li><a href="/contact"><span class="glyphicon glyphicon-phone-alt"></span></a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-list"></span><span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
@@ -66,9 +66,19 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/login">Message</a></li>
-            <li class="active"><a href="/userinfor">Admin<span class="sr-only">(current)</span></a></li>
-            <li><a href="../navbar-fixed-top/">Logout</a></li>
+			<li><a href="/message"><span class="glyphicon glyphicon-envelope"></span></a></li>
+			{% if current_user %} 
+            <li class="active"><a href="/userinfo">{{ current_user}}<span class="sr-only">(current)</span></a></li>
+			{% else %}
+			<li><a href="/register"><span class="glyphicon glyphicon-user"></span></a></li>
+			{% endif %}
+
+
+			{% if current_user %} 
+			<li><a href="/logout"><span class="glyphicon glyphicon-off"></span></a></li>
+			{% else %}
+			<li><a href="/login"><span class="glyphicon glyphicon-check"></span></a></li>
+			{% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -78,7 +88,7 @@
 	<div class="container">
 		{% if flash_message %} 
 		<div class="alert alert-warning">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<button type="button" class="close" data-dismiss="alert"><span class="glyphicon glyphicon-trash"></span></button>
 
 			{{ flash_message }}
 		</div>
