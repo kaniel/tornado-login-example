@@ -28,6 +28,7 @@ handlers = [
 
 	# Main
 	url(r"/",main.IndexHandler),
+	url(r"/adduser",main.AddUserHandler),
 	
 	# Dash
 	url(r"/dashboard", dashboard.DashIndexHandler),

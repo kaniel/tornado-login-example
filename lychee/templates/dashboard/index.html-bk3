@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block nav %}
+<li><a href="/dashboard/addstudent">Add</a></li>
+<li><a href="/dashboard/studentinfo">Info</a></li>
+{% endblock %}
+
+{% block content %}
+
+
+{% endblock %}
+

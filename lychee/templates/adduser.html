@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<form class="form-horizontal" role="form">
+                    <fieldset>
+                        <legend>Add Student Information</legend>
+                       <div class="form-group">
+                          <label class="col-sm-2 control-label" for="ds_host">Name </label>
+                          <div class="col-sm-4">
+                             <input class="form-control" id="ds_host" type="text" placeholder="Frank AK"/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="ds_name">Address </label>
+                          <div class="col-sm-4">
+                             <input class="form-control" id="ds_name" type="text" placeholder="HK. A101"/>
+                          </div>
+                       </div>
+                       <div class="form-group">
+                          <label class="col-sm-2 control-label" for="ds_username">Phone </label>
+                          <div class="col-sm-4">
+                             <input class="form-control" id="ds_username" type="text" placeholder="15700009999"/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="ds_email">Email </label>
+                          <div class="col-sm-4">
+                             <input class="form-control" id="ds_password" type="text" placeholder="example@example.com"/>
+                          </div>
+                       </div>
+                    </fieldset>     
+                    <fieldset>
+                         <legend>Options</legend>
+                        <div class="form-group">
+                           <label for="disabledSelect"  class="col-sm-2 control-label">Sex</label>
+                           <div class="col-sm-4">
+                              <select id="disabledSelect" class="form-control">
+                                 <option>Male</option>
+                                 <option>Female</option>
+                              </select>
+                           </div>
+                        </div>
+                    </fieldset>
+                    
+                    
+					<fieldset>
+                         <legend>Require</legend>
+                        <div class="form-group">
+                           <label for="disabledSelyyect"  class="col-sm-2 control-label">Role</label>
+                           <div class="col-sm-4">
+                              <select id="disabledSelect" class="form-control">
+                                 <option>Admin</option>
+                                 <option>Teacher</option>
+                                 <option>Student</option>
+                              </select>
+                           </div>
+                        </div>
+                    </fieldset>
+                    
+					<fieldset>
+                         <legend>Are you sure about that?</legend>
+                        <div class="form-group">
+							<div class="col-sm-8">
+							<button type="button" class="btn btn-lg btn-primary">Submit</button>
+							<button type="button" class="btn btn-lg btn-Info">Reset</button>
+							<button type="button" class="btn btn-lg btn-danger">Cancel</button>
+							</div>
+                        </div>
+                    </fieldset>
+                    
+                    
+
+                </form>
+
+{% endblock %}
