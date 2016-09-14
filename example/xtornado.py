@@ -91,7 +91,8 @@ class BaseRequestHandler(web.RequestHandler):
 		finally:
 			thread_in_use[self.route_path] -= 1
 
-	post = handle
+	#: What's this ??
+	post = handle	
 	get = handle
 	put = handle
 	delete = handle
@@ -117,7 +118,8 @@ class BaseRequestHandler(web.RequestHandler):
 	@classmethod
 	def route(cls, route_path):
 		def _route(function_name):
-			cls.add_handler(route_path, cls,{'route_path':route_path,'exec_func':function_name})
+			#: add_handlers(self, host_pattern, host_handlers)
+			cls.add_handlers(route_path, cls,{'route_path':route_path,'exec_func':function_name})
 			# TODO cls.add_handler(route_path, cls,{route_path:function_name})
 			thread_in_use[route_path] = 0	#: TODO is thread safe??
 			def __route(function_args):
